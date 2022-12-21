@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'Thêm mới người dùng')
+@section('title', 'Chỉnh sửa thông tin người dùng')
 @section('content')
     <div class="dash">
         @include('admin.dash-nav-dark')
@@ -12,25 +12,22 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="bg-light p-4 rounded">
-                                        <h1>Tạo mới người dùng</h1>
+                                        <h1>Sửa người dùng</h1>
                                         <div class="lead">
-                                            Thêm mới người dùng và chỉ định vai trò
-                                        </div>
 
-                                        <div class="mt-2">
-                                            @include('admin.messages')
                                         </div>
 
                                         <div class="container mt-4">
-                                            <form method="POST" action="">
+                                            <form method="post" action="{{ route('admin.users.update', $user->id) }}">
+                                                @method('patch')
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="name" class="form-label">Tên</label>
-                                                    <input value="{{ old('name') }}"
+                                                    <input value="{{ $user->name }}"
                                                            type="text"
                                                            class="form-control"
                                                            name="name"
-                                                           placeholder="Nhập tên" required>
+                                                           placeholder="Name" required>
 
                                                     @if ($errors->has('name'))
                                                         <span class="text-danger text-left">{{ $errors->first('name') }}</span>
@@ -38,18 +35,33 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input value="{{ old('email') }}"
+                                                    <input value="{{ $user->email }}"
                                                            type="email"
                                                            class="form-control"
                                                            name="email"
-                                                           placeholder="Email" required>
+                                                           placeholder="Email address" required>
                                                     @if ($errors->has('email'))
                                                         <span class="text-danger text-left">{{ $errors->first('email') }}</span>
                                                     @endif
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label for="role" class="form-label">Vai trò</label>
+                                                    <select class="form-control"
+                                                            name="role" required>
+                                                        <option value="">Chọn vai trò</option>
+                                                        @foreach($roles as $role)
+                                                            <option value="{{ $role->id }}"
+                                                                {{ in_array($role->name, $userRole)
+                                                                    ? 'selected'
+                                                                    : '' }}>{{ $role->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @if ($errors->has('role'))
+                                                        <span class="text-danger text-left">{{ $errors->first('role') }}</span>
+                                                    @endif
+                                                </div>
 
-                                                <button type="submit" value="save" name="mode" class="btn btn-primary">Lưu</button>
-                                                <button type="submit" value="save_exit" name="mode" class="btn btn-primary">Lưu và thoát</button>
+                                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                                                 <a href="{{ route('admin.users.index') }}" class="btn btn-default">Quay lại</a>
                                             </form>
                                         </div>

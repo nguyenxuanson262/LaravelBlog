@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'dashboard')
+@section('title', 'Danh sách người dùng')
 @section('content')
     <div class="dash">
         @include('admin.dash-nav-dark')
@@ -12,10 +12,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="bg-light p-4 rounded">
-                                        <h1>Users</h1>
+                                        <h1>Danh sách người dùng</h1>
                                         <div class="lead">
-                                            Manage your users here.
-                                            <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm float-right">Add new user</a>
+                                            Quản lí danh sách người dùng
+                                            <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-sm float-right">Thêm mới</a>
                                         </div>
 
                                         <div class="mt-2">
@@ -25,12 +25,11 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th scope="col" width="1%">No</th>
-                                                <th scope="col" width="15%">Name</th>
+                                                <th scope="col" width="1%">STT</th>
+                                                <th scope="col" width="15%">Tên</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col" width="10%">Username</th>
-                                                <th scope="col" width="10%">Roles</th>
-                                                <th scope="col" width="1%" colspan="3"></th>
+                                                <th scope="col" width="10%">Vai trò</th>
+                                                <th scope="col" width="1%" colspan="3">Thao tác</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -39,17 +38,16 @@
                                                     <th scope="row">{{ $user->id }}</th>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->username }}</td>
                                                     <td>
                                                         @foreach($user->roles as $role)
                                                             <span class="badge bg-primary">{{ $role->name }}</span>
                                                         @endforeach
                                                     </td>
-                                                    <td><a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-warning btn-sm">Show</a></td>
-                                                    <td><a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-info btn-sm">Edit</a></td>
+                                                    <td><a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-warning btn-sm">Xem</a></td>
+                                                    <td><a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-info btn-sm">Sửa</a></td>
                                                     <td>
                                                         {!! Form::open(['method' => 'DELETE','route' => ['admin.users.destroy', $user->id],'style'=>'display:inline']) !!}
-                                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                                        {!! Form::submit('Xóa', ['class' => 'btn btn-danger btn-sm']) !!}
                                                         {!! Form::close() !!}
                                                     </td>
                                                 </tr>

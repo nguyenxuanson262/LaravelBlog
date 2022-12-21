@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'Permission-lists')
+@section('title', 'Danh sách quyền')
 @section('content')
     <div class="dash">
         @include('admin.dash-nav-dark')
@@ -12,10 +12,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="bg-light p-4 rounded">
-                                        <h2>Permissions</h2>
+                                        <h2>Danh sách quyền</h2>
                                         <div class="lead">
-                                            Manage your permissions here.
-                                            <a href="{{ route('admin.permissions.create') }}" class="btn btn-primary btn-sm float-right">Add permissions</a>
+                                            Quản lý quyền tại đây.
+                                            <a href="{{ route('admin.permissions.create') }}" class="btn btn-primary btn-sm float-right">Thêm mới</a>
                                         </div>
 
                                         <div class="mt-2">
@@ -25,9 +25,9 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th scope="col" width="15%">Name</th>
+                                                <th scope="col" width="15%">Tên</th>
                                                 <th scope="col">Guard</th>
-                                                <th scope="col" colspan="3" width="1%"></th>
+                                                <th scope="col" colspan="3" width="1%">Thao tác</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -35,10 +35,10 @@
                                                 <tr>
                                                     <td>{{ $permission->name }}</td>
                                                     <td>{{ $permission->guard_name }}</td>
-                                                    <td><a href="{{ route('admin.permissions.edit', $permission->id) }}" class="btn btn-info btn-sm">Edit</a></td>
+                                                    <td><a href="{{ route('admin.permissions.edit', $permission->id) }}" class="btn btn-info btn-sm">Sửa</a></td>
                                                     <td>
                                                         {!! Form::open(['method' => 'DELETE','route' => ['admin.permissions.destroy', $permission->id],'style'=>'display:inline']) !!}
-                                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                                        {!! Form::submit('Xóa', ['class' => 'btn btn-danger btn-sm']) !!}
                                                         {!! Form::close() !!}
                                                     </td>
                                                 </tr>

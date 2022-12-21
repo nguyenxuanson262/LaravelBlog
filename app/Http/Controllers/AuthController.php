@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ class AuthController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("login")->with('status','Login details are  invalid');
     }
 
     public function registration()
@@ -47,7 +48,7 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect()->route('admin.index')->withSuccess('You have signed-in');
+        return redirect()->route('admin.index')->with('status','You have signed-in');
     }
 
     public function create(array $data)

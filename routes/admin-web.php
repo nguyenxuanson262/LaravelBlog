@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => ['auth']
+    'middleware' => ['auth', 'isAdmin']
 ], function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
     Route::resource('permissions', PermissionsController::class);
     Route::resource('roles', RolesController::class);
@@ -24,5 +25,17 @@ Route::group([
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::patch('/{user}/update', [UserController::class, 'update'])->name('users.update');
         Route::delete('/{user}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+    });
+
+    Route::group(['prefix' => 'categories'], function() {
+        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+
+        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+
+        Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::post('/update/{category}', [CategoryController::class, 'update'])->name('categories.update');
+
+        Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('categories.delete');
     });
 });

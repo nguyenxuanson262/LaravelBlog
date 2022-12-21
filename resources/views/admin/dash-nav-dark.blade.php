@@ -7,35 +7,47 @@
     </header>
     <nav class="dash-nav-list">
         <a href="{{ route('admin.index') }}" class="dash-nav-item">
-            <i class="fas fa-home"></i> Dashboard </a>
+            <i class="fas fa-home"></i> Bảng điều khiển </a>
         <div class="dash-nav-dropdown">
             <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
-                <i class="fas fa-users"></i> Users </a>
+                <i class="fas fa-users"></i> Người dùng </a>
             <div class="dash-nav-dropdown-menu">
-                <a href="{{ route('admin.users.index') }}" class="dash-nav-dropdown-item">List - users</a>
+                <a href="{{ route('admin.users.create') }}" class="dash-nav-dropdown-item">Thêm mới</a>
+            </div>
+            <div class="dash-nav-dropdown-menu">
+                <a href="{{ route('admin.users.index') }}" class="dash-nav-dropdown-item">Danh sách</a>
             </div>
         </div>
         <div class="dash-nav-dropdown">
             <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
-                <i class="fas fa-user-check"></i> Permissions </a>
+                <i class="fas fa-user-check"></i> Quyền </a>
             <div class="dash-nav-dropdown-menu">
-                <a href="{{ route('admin.permissions.index') }}" class="dash-nav-dropdown-item">Permission Lists</a>
+                <a href="{{ route('admin.permissions.create') }}" class="dash-nav-dropdown-item">Thêm mới</a>
+            </div>
+            <div class="dash-nav-dropdown-menu">
+                <a href="{{ route('admin.permissions.index') }}" class="dash-nav-dropdown-item">Danh sách</a>
             </div>
         </div>
         <div class="dash-nav-dropdown">
             <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
-                <i class="fas fa-users-cog"></i> Roles </a>
+                <i class="fas fa-users-cog"></i> Vai trò </a>
             <div class="dash-nav-dropdown-menu">
-                <a href="{{ route('admin.roles.index') }}" class="dash-nav-dropdown-item">Role Lists</a>
+                <a href="{{ route('admin.roles.create') }}" class="dash-nav-dropdown-item">Thêm mới</a>
+            </div>
+            <div class="dash-nav-dropdown-menu">
+                <a href="{{ route('admin.roles.index') }}" class="dash-nav-dropdown-item">Danh sách</a>
             </div>
         </div>
-{{--        <div class="dash-nav-dropdown">--}}
-{{--            <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">--}}
-{{--                <i class="fas fa-th-list"></i> Categories </a>--}}
-{{--            <div class="dash-nav-dropdown-menu">--}}
-{{--                <a href="chartjs.html" class="dash-nav-dropdown-item">Chart.js</a>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="dash-nav-dropdown">
+            <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
+                <i class="fas fa-th-list"></i> Danh mục </a>
+            <div class="dash-nav-dropdown-menu">
+                <a href="{{ route('admin.categories.create') }}" class="dash-nav-dropdown-item">Thêm mới</a>
+            </div>
+            <div class="dash-nav-dropdown-menu">
+                <a href="{{ route('admin.categories.index') }}" class="dash-nav-dropdown-item">Danh sách</a>
+            </div>
+        </div>
 
 {{--        <div class="dash-nav-dropdown">--}}
 {{--            <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">--}}

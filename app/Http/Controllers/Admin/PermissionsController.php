@@ -46,8 +46,14 @@ class PermissionsController extends Controller
 
         Permission::create($request->only('name'));
 
-        return redirect()->route('admin.permissions.index')
-            ->withSuccess(__('Permission created successfully.'));
+        if ($request->mode == 'save'){
+            return redirect()->route('admin.permissions.create')
+                ->withSuccess(__('Thêm mới thành công.'));;
+        }
+        if ($request->mode == 'save_exit'){
+            return redirect()->route('admin.permissions.index')
+                ->withSuccess(__('Thêm mới thành công.'));
+        }
     }
 
     /**
@@ -90,7 +96,7 @@ class PermissionsController extends Controller
         $permission->update($request->only('name'));
 
         return redirect()->route('admin.permissions.index')
-            ->withSuccess(__('Permission updated successfully.'));
+            ->withSuccess(__('Cập nhật thành công.'));
     }
 
     /**
@@ -104,6 +110,6 @@ class PermissionsController extends Controller
         $permission->delete();
 
         return redirect()->route('admin.permissions.index')
-            ->withSuccess(__('Permission deleted successfully.'));
+            ->withSuccess(__('Xóa thành công.'));
     }
 }

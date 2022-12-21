@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'dashboard')
+@section('title', 'Chỉnh sửa vai trò')
 @section('content')
     <div class="dash">
         @include('admin.dash-nav-dark')

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('public.index');
-});
+})->name('index');
 
 Route::get('/catagory', function () {
     return view('public.catagory');

@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'dashboard')
+@section('title', 'Danh sách vai trò')
 @section('content')
     <div class="dash">
         @include('admin.dash-nav-dark')
@@ -12,10 +12,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="bg-light p-4 rounded">
-                                        <h1>Roles</h1>
+                                        <h1>Danh sách vai trò</h1>
                                         <div class="lead">
-                                            Manage your roles here.
-                                            <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-sm float-right">Add role</a>
+                                            Quản lí vai trò.
+                                            <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-sm float-right"><i class="fas fa-plus"></i> Thêm mới</a>
                                         </div>
 
                                         <div class="mt-2">
@@ -24,23 +24,25 @@
 
                                         <table class="table table-bordered">
                                             <tr>
-                                                <th width="1%">No</th>
-                                                <th>Name</th>
-                                                <th width="3%" colspan="3">Action</th>
+                                                <th width="1%">STT</th>
+                                                <th>Tên vai trò</th>
+                                                <th width="3%" colspan="3">Thao tác</th>
                                             </tr>
                                             @foreach ($roles as $key => $role)
                                                 <tr>
                                                     <td>{{ $role->id }}</td>
                                                     <td>{{ $role->name }}</td>
                                                     <td>
-                                                        <a class="btn btn-info btn-sm" href="{{ route('admin.roles.show', $role->id) }}">Show</a>
+                                                        <a class="btn btn-info btn-sm" href="{{ route('admin.roles.show', $role->id) }}" title="Xem chi tiết">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.edit', $role->id) }}">Edit</a>
+                                                        <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.edit', $role->id) }}" title="Sửa"><i class="fas fa-edit"></i></a>
                                                     </td>
                                                     <td>
                                                         {!! Form::open(['method' => 'DELETE','route' => ['admin.roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                                        <button class="btn btn-danger btn-sm" title="Xóa"><i class="fas fa-trash"></i></button>
                                                         {!! Form::close() !!}
                                                     </td>
                                                 </tr>

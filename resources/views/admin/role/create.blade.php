@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title', 'dashboard')
+@section('title', 'Thêm mới vai trò')
 @section('content')
     <div class="dash">
         @include('admin.dash-nav-dark')
@@ -12,13 +12,16 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="bg-light p-4 rounded">
-                                        <h1>Add new role</h1>
+                                        <h1>Thêm mới vai trò</h1>
                                         <div class="lead">
-                                            Add new role and assign permissions.
+                                            Thêm mới vai trò và chỉ định quyền.
+                                        </div>
+
+                                        <div class="mt-2">
+                                            @include('admin.messages')
                                         </div>
 
                                         <div class="container mt-4">
-
                                             @if (count($errors) > 0)
                                                 <div class="alert alert-danger">
                                                     <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -33,20 +36,20 @@
                                             <form method="POST" action="{{ route('admin.roles.store') }}">
                                                 @csrf
                                                 <div class="mb-3">
-                                                    <label for="name" class="form-label">Name</label>
+                                                    <label for="name" class="form-label">Tên</label>
                                                     <input value="{{ old('name') }}"
                                                            type="text"
                                                            class="form-control"
                                                            name="name"
-                                                           placeholder="Name" required>
+                                                           placeholder="Nhập tên" required>
                                                 </div>
 
-                                                <label for="permissions" class="form-label">Assign Permissions</label>
+                                                <label for="permissions" class="form-label">Chỉ định quyền</label>
 
                                                 <table class="table table-striped">
                                                     <thead>
                                                     <th scope="col" width="1%"><input type="checkbox" name="all_permission"></th>
-                                                    <th scope="col" width="20%">Name</th>
+                                                    <th scope="col" width="20%">Tên quyền</th>
                                                     <th scope="col" width="1%">Guard</th>
                                                     </thead>
 
@@ -64,8 +67,9 @@
                                                     @endforeach
                                                 </table>
 
-                                                <button type="submit" class="btn btn-primary">Save user</button>
-                                                <a href="{{ route('admin.roles.index') }}" class="btn btn-default">Back</a>
+                                                <button type="submit" value="save" name="mode" class="btn btn-primary">Lưu</button>
+                                                <button type="submit" value="save_exit" name="mode" class="btn btn-primary">Lưu và thoát</button>
+                                                <a href="{{ route('admin.roles.index') }}" class="btn btn-default">Quay lại</a>
                                             </form>
                                         </div>
                                     </div>

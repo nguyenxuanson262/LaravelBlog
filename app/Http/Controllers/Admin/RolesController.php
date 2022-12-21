@@ -48,8 +48,15 @@ class RolesController extends Controller
         $role = Role::create(['name' => $request->get('name')]);
         $role->syncPermissions($request->get('permission'));
 
-        return redirect()->route('admin.roles.index')
-            ->with('success','Role created successfully');
+        if ($request->mode == 'save'){
+            return redirect()->route('admin.roles.create')
+                ->with('success', 'Thêm mới thành công');
+        }
+        if ($request->mode == 'save_exit'){
+            return redirect()->route('admin.roles.index')
+                ->with('success','Thêm mới thành công.');
+
+        }
     }
 
     /**
@@ -100,7 +107,7 @@ class RolesController extends Controller
         $role->syncPermissions($request->get('permission'));
 
         return redirect()->route('admin.roles.index')
-            ->with('success','Role updated successfully');
+            ->with('success','Cập nhật thành công');
     }
 
     /**
@@ -114,6 +121,6 @@ class RolesController extends Controller
         $role->delete();
 
         return redirect()->route('admin.roles.index')
-            ->with('success','Role deleted successfully');
+            ->with('success','Xóa thành công');
     }
 }
